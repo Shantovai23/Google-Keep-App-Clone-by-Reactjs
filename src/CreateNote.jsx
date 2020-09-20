@@ -1,0 +1,56 @@
+import React, { useState } from 'react'
+import AddIcon from '@material-ui/icons/Add';
+
+const CreateNote=(props)=>{
+
+    const [note,setNote]=useState({
+        title:'',
+        content:''
+    })
+
+    const inputEvent=(e)=>{
+       const {name,value}=e.target
+      setNote((predata)=>{
+          return{
+            ...predata,
+            [name]:value
+          }
+      })
+    }
+
+    const addevent=(e)=>{
+        e.preventDefault()
+       props.passNote(note)
+       setNote({
+        title:'',
+        content:''
+       })
+    }
+    return(<>
+        <div className='main_note'>
+        <form>
+            <input type='text'
+             placeholder='Title'
+              name='title'
+               autoComplete='off'
+               value={note.title}
+               onChange={inputEvent}
+                />
+
+            <textarea rows=''
+             cols=''
+              placeholder='Write note...'
+               name='content'
+               value={note.content}
+               onChange={inputEvent}
+               >
+               </textarea>
+            <div className='btn'>
+            <button className='del' onClick={addevent}><AddIcon className='plus_sign'/></button>
+            </div>
+        </form>
+        </div>
+    </>)
+}
+
+export default CreateNote
