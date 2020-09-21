@@ -14,6 +14,13 @@ const App=()=>{
         })
        
     }
+    const onDelete=(id)=>{
+        setAddItem((oldData)=>{
+          return  oldData.filter((val,index)=>{
+              return  index!==id
+            })
+        })
+    }
 
     
     return(<>
@@ -25,6 +32,7 @@ const App=()=>{
                 key={index}
                 title={val.title}
                 content={val.content}
+                deleteItem={onDelete}
             />
         })}
         <Footer/>
